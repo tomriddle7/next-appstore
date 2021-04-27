@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import useSWR from 'swr';
 import styled from 'styled-components'
-import Loader from '../components/Loader'
-import Header from '../components/Header'
-import Room from '../components/Room'
-import ToggleSwitch from '../components/ToggleSwitch'
+import Loader from '../../components/Loader'
+import Header from '../../components/Header'
+import Room from '../../components/Room'
+import ToggleSwitch from '../../components/ToggleSwitch'
 
 const Title = styled.h3`
   font-size: 28px;
@@ -12,10 +12,10 @@ const Title = styled.h3`
 `;
 
 const Index = () => {
-  const { data: data1, error: error1 } = useSWR(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/kr/ios-apps/new-apps-we-love/all/10/explicit.json`, url => {
+  const { data: data1, error: error1 } = useSWR(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/kr/ios-apps/top-free/games/25/explicit.json`, url => {
     return fetch(url).then(res => res.json())
   });
-  const { data: data2, error: error2 } = useSWR(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/kr/ios-apps/new-games-we-love/all/10/explicit.json`, url => {
+  const { data: data2, error: error2 } = useSWR(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/kr/ios-apps/top-paid/games/25/explicit.json`, url => {
     return fetch(url).then(res => res.json())
   });
 
@@ -48,10 +48,7 @@ const Index = () => {
       <Header />
     </>
   ) : (
-    <>
-      <Loader />
-      <Header />
-    </>
+    <Loader />
   )
 }
 export default Index
